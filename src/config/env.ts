@@ -1,8 +1,26 @@
 import path from "path";
-import dotenv from "dotenv";
+import fs from "fs";
 import type { SignOptions } from "jsonwebtoken";
 
-dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+function safeLoadDotenv() {
+  // ✅ production trên cPanel dùng Environment Variables -> không cần .env
+  if (process.env.NODE_ENV === "production") return;
+
+  const envPath =
+    process.env.DOTENV_CONFIG_PATH ?? path.resolve(process.cwd(), ".env");
+
+  if (!fs.existsSync(envPath)) return;
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const dotenv = require("dotenv");
+    dotenv.config({ path: envPath });
+  } catch {
+    console.warn("⚠️ dotenv not available, skip loading .env");
+  }
+}
+
+safeLoadDotenv();
 
 function req(name: string): string {
   const v = process.env[name];
@@ -17,7 +35,7 @@ export const env = {
   MONGODB_URI: req("MONGODB_URI"),
 
   CORS_ORIGIN: req("CORS_ORIGIN"),
-  COOKIE_DOMAIN: process.env.COOKIE_DOMAIN, // optional in dev
+  COOKIE_DOMAIN: process.env.COOKIE_DOMAIN, // optional
 
   ADMIN_EMAIL: req("ADMIN_EMAIL"),
   ADMIN_PASSWORD: req("ADMIN_PASSWORD"),
@@ -25,7 +43,6 @@ export const env = {
   JWT_ACCESS_SECRET: req("JWT_ACCESS_SECRET"),
   JWT_REFRESH_SECRET: req("JWT_REFRESH_SECRET"),
 
-  // ✅ quan trọng: ép type đúng cho jsonwebtoken
   JWT_ACCESS_EXPIRES_IN: (process.env.JWT_ACCESS_EXPIRES_IN ?? "15m") as SignOptions["expiresIn"],
   JWT_REFRESH_EXPIRES_IN: (process.env.JWT_REFRESH_EXPIRES_IN ?? "7d") as SignOptions["expiresIn"],
 

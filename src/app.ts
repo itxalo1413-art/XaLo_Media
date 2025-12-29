@@ -14,8 +14,8 @@ import authRoutes from "./features/auth/auth.route";
 import { requestId } from "./middlewares/requestId";
 import { requestLogger } from "./middlewares/requestLogger";
 // import companyRoutes from "./features/company/company.route";
-// import servicesPublicRoutes from "./features/services/services.public.route";
-// import servicesAdminRoutes from "./features/services/services.admin.route";
+import { servicesPublicRouter } from "./features/services/services.public.route";
+import { servicesAdminRouter } from "./features/services/services.admin.route";
 // import articlesPublicRoutes from "./features/articles/articles.public.route";
 // import articlesAdminRoutes from "./features/articles/articles.admin.route";
 // import inquiriesPublicRoutes from "./features/inquiries/inquiries.public.route";
@@ -44,12 +44,12 @@ export function createApp() {
   // auth + public
   app.use("/api/v1/auth", authRoutes);
   // app.use("/api/v1/company", companyRoutes);
-  // app.use("/api/v1/services", servicesPublicRoutes);
+  app.use("/api/v1/services", servicesPublicRouter);
   // app.use("/api/v1/articles", articlesPublicRoutes);
   // app.use("/api/v1/inquiries", inquiriesPublicRoutes);
 
   // // admin
-  // app.use("/api/v1/admin/services", servicesAdminRoutes);
+  app.use("/api/v1/admin/services", servicesAdminRouter);
   // app.use("/api/v1/admin/articles", articlesAdminRoutes);
   // app.use("/api/v1/admin/inquiries", inquiriesAdminRoutes);
 

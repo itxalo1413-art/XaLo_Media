@@ -20,6 +20,11 @@ function refreshCookieOptions() {
   };
 }
 
+export const getHello = asyncHandler(async (req: Request, res: Response) => {
+  // Sử dụng hàm ok để trả về JSON chuẩn theo format dự án
+  return ok(res, { message: "Hello World" });
+});
+
 export const postLogin = asyncHandler(async (req: Request, res: Response) => {
   const body = loginSchema.parse(req.body);
   const { accessToken, refreshToken } = await login(body.email, body.password);
