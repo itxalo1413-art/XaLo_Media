@@ -21,7 +21,8 @@ import {articlesAdminRouter} from "./features/articles/articles.admin.route";
 // import inquiriesPublicRoutes from "./features/inquiries/inquiries.public.route";
 // import inquiriesAdminRoutes from "./features/inquiries/inquiries.admin.route";
 import { mediaRouter } from "./features/media/media.route";
-// import aiRoutes from "./features/ai/ai.route";
+import aiRoutes from "./features/ai/ai.route";
+
 
 export function createApp() {
   const app = express();
@@ -36,8 +37,6 @@ export function createApp() {
   app.use(requestLogger);
 
   
-
-  app.get("/health", (_req, res) => res.json({ success: true, data: { status: "ok" } }));
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
@@ -55,7 +54,7 @@ export function createApp() {
 
   // // tools
   app.use("/api/v1/media", mediaRouter);
-  // app.use("/api/v1/ai", aiRoutes);
+  app.use("/api/v1/ai", aiRoutes);
 
   app.use(errorMiddleware);
   return app;

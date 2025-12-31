@@ -51,6 +51,6 @@ export const env = {
   CLOUDINARY_API_SECRET: req("CLOUDINARY_API_SECRET"),
 
   GEMINI_API_KEY: req("GEMINI_API_KEY"),
-  GEMINI_MODEL: process.env.GEMINI_MODEL ?? "gemini-2.5-pro",
+  GEMINI_MODEL: process.env.GEMINI_MODEL ?? "gemini-2.5-flash",
   GEMINI_TEMPERATURE: Number(process.env.GEMINI_TEMPERATURE ?? 0.7),
 } as const;

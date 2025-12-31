@@ -44,6 +44,10 @@ const ArticleSchema = new Schema(
   { timestamps: true }
 );
 
-ArticleSchema.index({ title: "text", contentHtml: "text", tags: 1 });
+// Index để tìm kiếm văn bản (Search bar)
+ArticleSchema.index({ title: "text", contentHtml: "text" });
+
+// Index riêng cho tags để filter nhanh (Category/Tags list)
+ArticleSchema.index({ tags: 1 });
 
 export const Article = model("Article", ArticleSchema);
