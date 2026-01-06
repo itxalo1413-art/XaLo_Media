@@ -28,9 +28,15 @@ function req(name: string): string {
   return v;
 }
 
+const portRaw = process.env.PORT ?? process.env.NODE_PORT;
+const port = Number(portRaw ?? 8080);
+if (Number.isNaN(port)) throw new Error("Invalid PORT");
+
+
+
 export const env = {
   NODE_ENV: process.env.NODE_ENV ?? "development",
-  PORT: Number(process.env.PORT ?? 5000),
+  PORT: port,
 
   MONGODB_URI: req("MONGODB_URI"),
 

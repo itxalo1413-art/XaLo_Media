@@ -26,7 +26,7 @@ import aiRoutes from "./features/ai/ai.route";
 
 export function createApp() {
   const app = express();
-
+  app.set("trust proxy", 1);
   app.use(requestId);
   app.use(helmet());
   app.use(compression());

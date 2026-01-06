@@ -1,4 +1,11 @@
+import path from "path";
 import swaggerJSDoc from "swagger-jsdoc";
+
+const isProd = process.env.NODE_ENV === "production";
+
+const apis = isProd
+  ? [path.resolve(__dirname, "../features/**/*.route.js")]
+  : [path.resolve(process.cwd(), "src/features/**/*.route.ts")];
 
 export const swaggerSpec = swaggerJSDoc({
   definition: {
@@ -8,7 +15,7 @@ export const swaggerSpec = swaggerJSDoc({
       version: "1.0.0",
       description: "Company website + Services + Blog + AI + Inquiries",
     },
-    servers: [{ url: "/api/v1" }],
+    servers: [{ url: process.env.SWAGGER_SERVER_URL ?? "/api/v1" }],
     tags: [
       { name: "Auth" },
       { name: "Company" },
@@ -49,5 +56,5 @@ export const swaggerSpec = swaggerJSDoc({
       },
     },
   },
-  apis: ["src/features/**/*.route.ts"],
+  apis,
 });
