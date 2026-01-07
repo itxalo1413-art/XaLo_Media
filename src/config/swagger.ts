@@ -4,8 +4,15 @@ import swaggerJSDoc from "swagger-jsdoc";
 const isProd = process.env.NODE_ENV === "production";
 
 const apis = isProd
-  ? [path.resolve(__dirname, "../features/**/*.route.js")]
+  ? [
+      path.resolve(process.cwd(), "dist/features/**/*.route.js"),
+      path.resolve(process.cwd(), "dist/src/features/**/*.route.js"),
+      path.resolve(process.cwd(), "dist/**/**/*.route.js"),
+    ]
   : [path.resolve(process.cwd(), "src/features/**/*.route.ts")];
+const serverUrl =
+  process.env.SWAGGER_SERVER_URL ??
+  (process.env.SWAGGER_PATHS_INCLUDE_API_V1 === "true" ? "/" : "/api/v1");
 
 export const swaggerSpec = swaggerJSDoc({
   definition: {
@@ -15,7 +22,7 @@ export const swaggerSpec = swaggerJSDoc({
       version: "1.0.0",
       description: "Company website + Services + Blog + AI + Inquiries",
     },
-    servers: [{ url: process.env.SWAGGER_SERVER_URL ?? "/api/v1" }],
+    servers: [{ url: serverUrl }],
     tags: [
       { name: "Auth" },
       { name: "Company" },
@@ -26,6 +33,7 @@ export const swaggerSpec = swaggerJSDoc({
       { name: "AI" },
       { name: "Admin" },
     ],
+
     components: {
       securitySchemes: {
         bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
@@ -56,5 +64,6 @@ export const swaggerSpec = swaggerJSDoc({
       },
     },
   },
+
   apis,
 });

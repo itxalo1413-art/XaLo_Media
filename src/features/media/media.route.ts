@@ -10,7 +10,7 @@ mediaRouter.use(requireAdmin);
  * @openapi
  * /api/v1/media/signature:
  *   get:
- *     tags: [Media]
+ *     tags: ["Admin", "Media"]
  *     summary: Get Cloudinary upload signature (admin)
  *     security: [{ bearerAuth: [] }]
  *     parameters:

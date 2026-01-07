@@ -9,7 +9,6 @@ async function bootstrap() {
   await seedAdmin();
 
   const app = createApp();
-  // ✅ Debug swagger spec (tạm thời)
   app.get("/api/v1/docs-json", (req, res) => res.json(swaggerSpec));
 
   app.listen(env.PORT, () => console.log(`🚀 Server running on :${env.PORT}`));

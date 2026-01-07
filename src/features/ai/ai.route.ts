@@ -22,8 +22,7 @@ router.use(requireAdmin);
  * @openapi
  * /api/v1/ai/articles/generate:
  *   post:
- *     tags:
- *       - Admin / AI
+ *     tags: ["Admin / AI"]
  *     summary: Generate Article draft by AI (Gemini)
  *     security:
  *       - bearerAuth: []

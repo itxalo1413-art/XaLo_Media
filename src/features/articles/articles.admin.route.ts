@@ -19,7 +19,7 @@ articlesAdminRouter.use(requireAdmin);
  * @openapi
  * /api/v1/admin/articles:
  *   get:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: List articles (admin)
  *     security: [{ bearerAuth: [] }]
  *     responses:
@@ -31,7 +31,7 @@ articlesAdminRouter.get("/", adminListArticles);
  * @openapi
  * /api/v1/admin/articles/{id}:
  *   get:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: Get article by id (admin)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
@@ -48,7 +48,7 @@ articlesAdminRouter.get("/:id", adminGetArticle);
  * @openapi
  * /api/v1/admin/articles:
  *   post:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: Create article (admin)
  *     security: [{ bearerAuth: [] }]
  *     requestBody:
@@ -76,7 +76,7 @@ articlesAdminRouter.post("/", adminCreateArticle);
  * @openapi
  * /api/v1/admin/articles/{id}:
  *   patch:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: Update article (admin)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
@@ -93,7 +93,7 @@ articlesAdminRouter.patch("/:id", adminUpdateArticle);
  * @openapi
  * /api/v1/admin/articles/{id}:
  *   delete:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: Soft delete article (admin)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
@@ -110,7 +110,7 @@ articlesAdminRouter.delete("/:id", adminDeleteArticle);
  * @openapi
  * /api/v1/admin/articles/{id}/restore:
  *   post:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: Restore deleted article (admin)
  *     security: [{ bearerAuth: [] }]
  *     parameters:
@@ -127,7 +127,7 @@ articlesAdminRouter.post("/:id/restore", adminRestoreArticle);
  * @openapi
  * /api/v1/admin/articles/{id}/publish:
  *   post:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: Publish article (admin)
  *     security: [{ bearerAuth: [] }]
  *     responses:
@@ -139,7 +139,7 @@ articlesAdminRouter.post("/:id/publish", adminPublishArticle);
  * @openapi
  * /api/v1/admin/articles/{id}/unpublish:
  *   post:
- *     tags: [Admin Articles]
+ *     tags: ["Admin", "Articles"]
  *     summary: Unpublish article (admin)
  *     security: [{ bearerAuth: [] }]
  *     responses:

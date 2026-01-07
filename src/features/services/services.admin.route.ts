@@ -66,7 +66,7 @@ servicesAdminRouter.use(requireAdmin);
  * @openapi
  * /admin/services:
  *   get:
- *     tags: [Services]
+ *     tags: ["Admin", "Services"]
  *     summary: Admin - List services
  *     security:
  *       - BearerAuth: []
@@ -96,7 +96,7 @@ servicesAdminRouter.get("/", adminListServices);
  * @openapi
  * /admin/services/{id}:
  *   get:
- *     tags: [Services]
+ *     tags: ["Admin", "Services"]
  *     summary: Admin - Get service by id
  *     security:
  *       - BearerAuth: []
@@ -115,7 +115,7 @@ servicesAdminRouter.get("/:id", adminGetService);
  * @openapi
  * /admin/services:
  *   post:
- *     tags: [Services]
+ *     tags: ["Admin", "Services"]
  *     summary: Admin - Create service
  *     security:
  *       - BearerAuth: []
@@ -134,7 +134,7 @@ servicesAdminRouter.post("/", adminCreateService);
  * @openapi
  * /admin/services/{id}:
  *   patch:
- *     tags: [Services]
+ *     tags: ["Admin", "Services"]
  *     summary: Admin - Update service
  *     security:
  *       - BearerAuth: []
@@ -159,7 +159,7 @@ servicesAdminRouter.patch("/:id", adminUpdateService);
  * @openapi
  * /admin/services/{id}:
  *   delete:
- *     tags: [Services]
+ *     tags: ["Admin", "Services"]
  *     summary: Admin - Soft delete service (isDeleted=true, isActive=false)
  *     security:
  *       - BearerAuth: []
@@ -178,7 +178,7 @@ servicesAdminRouter.delete("/:id", adminDeleteService);
  * @openapi
  * /admin/services/{id}/restore:
  *   post:
- *     tags: [Services]
+ *     tags: ["Admin", "Services"]
  *     summary: Admin - Restore soft-deleted service (isDeleted=false)
  *     security:
  *       - BearerAuth: []
