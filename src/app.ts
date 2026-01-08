@@ -16,10 +16,10 @@ import { requestLogger } from "./middlewares/requestLogger";
 // import companyRoutes from "./features/company/company.route";
 import { servicesPublicRouter } from "./features/services/services.public.route";
 import { servicesAdminRouter } from "./features/services/services.admin.route";
-import {articlesPublicRouter} from "./features/articles/articles.public.route";
-import {articlesAdminRouter} from "./features/articles/articles.admin.route";
-// import inquiriesPublicRoutes from "./features/inquiries/inquiries.public.route";
-// import inquiriesAdminRoutes from "./features/inquiries/inquiries.admin.route";
+import { articlesPublicRouter } from "./features/articles/articles.public.route";
+import { articlesAdminRouter } from "./features/articles/articles.admin.route";
+import { inquiriesPublicRoutes } from "./features/inquiries/inquiries.public.route";
+import { inquiriesAdminRoutes } from "./features/inquiries/inquiries.admin.route";
 import { mediaRouter } from "./features/media/media.route";
 import aiRoutes from "./features/ai/ai.route";
 import { kolsAdminRouter } from "./features/kols/kols.admin.route";
@@ -44,19 +44,17 @@ export function createApp() {
 
   // auth + public
   app.use("/api/v1/auth", authRoutes);
-  // app.use("/api/v1/company", companyRoutes);
   app.use("/api/v1/services", servicesPublicRouter);
   app.use("/api/v1/articles", articlesPublicRouter);
   app.use("/api/v1/kols", kolsPublicRouter);
 
-  // app.use("/api/v1/inquiries", inquiriesPublicRoutes);
+  app.use("/api/v1/inquiries", inquiriesPublicRoutes);
 
   // // admin
   app.use("/api/v1/admin/services", servicesAdminRouter);
   app.use("/api/v1/admin/articles", articlesAdminRouter);
   app.use("/api/v1/admin/kols", kolsAdminRouter);
-
-  // app.use("/api/v1/admin/inquiries", inquiriesAdminRoutes);
+  app.use("/api/v1/admin/inquiries", inquiriesAdminRoutes);
 
   // // tools
   app.use("/api/v1/media", mediaRouter);

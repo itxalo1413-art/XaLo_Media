@@ -1,4 +1,20 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
+
+export const INQUIRY_SERVICES = [
+  "Influencer Marketing",
+  "Livestream Services",
+  "Content Creation",
+  "TikTok Management",
+  "Talent Booking",
+  "Brand Partnership",
+] as const;
+
+export const INQUIRY_BUDGETS = [
+  "Dưới 50 triệu",
+  "50 - 100 triệu",
+  "100 - 500 triệu",
+  "Trên 500 triệu",
+] as const;
 
 const InquirySchema = new Schema(
   {
@@ -9,12 +25,21 @@ const InquirySchema = new Schema(
 
     interestedServices: { type: [String], default: [] },
     budgetRange: { type: String, default: "" },
-    message: { type: String, default: "" },
+    message: { type: String, default: "", trim: true },
 
     consent: { type: Boolean, required: true },
 
-    status: { type: String, enum: ["new", "contacted", "qualified", "closed", "spam"], default: "new", index: true },
+    status: {
+      type: String,
+      enum: ["new", "contacted", "qualified", "closed", "spam"],
+      default: "new",
+      index: true,
+    },
     source: { type: String, default: "website_form", index: true },
+
+    // soft delete
+    isDeleted: { type: Boolean, default: false, index: true },
+    deletedAt: { type: Date, default: null },
 
     ip: { type: String, default: "" },
     userAgent: { type: String, default: "" },
@@ -26,6 +51,7 @@ const InquirySchema = new Schema(
 );
 
 InquirySchema.index({ createdAt: -1 });
+InquirySchema.index({ isDeleted: 1, createdAt: -1 });
 InquirySchema.index({ email: 1, phone: 1 });
 
-export const Inquiry = model("Inquiry", InquirySchema);
+export const Inquiry = models.Inquiry || model("Inquiry", InquirySchema);
