@@ -2,7 +2,7 @@ import { KolModel } from "../../models/Kol";
 import { kolListQuerySchema } from "./kol.schema";
 import { buildFilter, buildSort } from "./kol.service";
 
-export async function listKolsPublic(req: any, res: any) {
+export async function listKolPublic(req: any, res: any) {
   const q = kolListQuerySchema.parse(req.query);
 
   const filter = buildFilter({

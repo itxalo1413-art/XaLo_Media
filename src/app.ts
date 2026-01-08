@@ -22,8 +22,10 @@ import { inquiriesPublicRoutes } from "./features/inquiries/inquiries.public.rou
 import { inquiriesAdminRoutes } from "./features/inquiries/inquiries.admin.route";
 import { mediaRouter } from "./features/media/media.route";
 import aiRoutes from "./features/ai/ai.route";
-import { kolsAdminRouter } from "./features/kols/kols.admin.route";
-import { kolsPublicRouter } from "./features/kols/kols.public.route";
+import { kolAdminRouter } from "./features/kol/kol.admin.route";
+import { kolPublicRouter } from "./features/kol/kol.public.route";
+import { recruitmentPublicRoutes } from "./features/recruitment/recruitment.public.route";
+import { recruitmentAdminRoutes } from "./features/recruitment/recruitment.admin.route";
 
 
 export function createApp() {
@@ -46,15 +48,16 @@ export function createApp() {
   app.use("/api/v1/auth", authRoutes);
   app.use("/api/v1/services", servicesPublicRouter);
   app.use("/api/v1/articles", articlesPublicRouter);
-  app.use("/api/v1/kols", kolsPublicRouter);
-
+  app.use("/api/v1/kol", kolPublicRouter);
   app.use("/api/v1/inquiries", inquiriesPublicRoutes);
+  app.use("/api/v1/recruitment", recruitmentPublicRoutes);
 
   // // admin
   app.use("/api/v1/admin/services", servicesAdminRouter);
   app.use("/api/v1/admin/articles", articlesAdminRouter);
-  app.use("/api/v1/admin/kols", kolsAdminRouter);
+  app.use("/api/v1/admin/kol", kolAdminRouter);
   app.use("/api/v1/admin/inquiries", inquiriesAdminRoutes);
+  app.use("/api/v1/admin/recruitment", recruitmentAdminRoutes);
 
   // // tools
   app.use("/api/v1/media", mediaRouter);

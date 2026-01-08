@@ -2,7 +2,7 @@ import { KolModel } from "../../models/Kol";
 import { kolCreateSchema, kolListQuerySchema, kolUpdateSchema } from "./kol.schema";
 import { buildFilter, buildSort, ensureUniqueSlug } from "./kol.service";
 
-export async function listKolsAdmin(req: any, res: any) {
+export async function listKolAdmin(req: any, res: any) {
   const q = kolListQuerySchema.parse(req.query);
 
   const filter = buildFilter({
