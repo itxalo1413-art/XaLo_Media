@@ -14,7 +14,7 @@ export const createInquiryBodySchema = z.object({
   budgetRange: budgetEnum.optional().or(z.literal("")).default(""),
   message: z.string().trim().max(3000).optional().default(""),
 
-  consent: z.literal(true),
+  // Đã xóa dòng consent: z.literal(true)
   source: z.string().trim().max(100).optional().default("website_form"),
 });
 
@@ -25,14 +25,13 @@ export const adminListInquiryQuerySchema = z.object({
 
   // nếu muốn xem cả deleted -> ?includeDeleted=true
   includeDeleted: z
-  .preprocess((v) => {
-    if (v === undefined) return false;
-    if (typeof v === "string") return v === "true" || v === "1";
-    return Boolean(v);
-  }, z.boolean())
-  .optional()
-  .default(false),
-
+    .preprocess((v) => {
+      if (v === undefined) return false;
+      if (typeof v === "string") return v === "true" || v === "1";
+      return Boolean(v);
+    }, z.boolean())
+    .optional()
+    .default(false),
 
   page: z.coerce.number().int().min(1).optional().default(1),
   limit: z.coerce.number().int().min(1).max(100).optional().default(20),

@@ -27,7 +27,7 @@ const InquirySchema = new Schema(
     budgetRange: { type: String, default: "" },
     message: { type: String, default: "", trim: true },
 
-    consent: { type: Boolean, required: true },
+    // Đã xóa trường consent tại đây
 
     status: {
       type: String,
