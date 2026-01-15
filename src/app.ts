@@ -11,6 +11,7 @@ import { swaggerSpec } from "./config/swagger";
 import { errorMiddleware } from "./middlewares/error";
 
 import authRoutes from "./features/auth/auth.route";
+import settingsRoutes from "./features/settings/settings.route";
 import { requestId } from "./middlewares/requestId";
 import { requestLogger } from "./middlewares/requestLogger";
 // import companyRoutes from "./features/company/company.route";
@@ -23,6 +24,7 @@ import { inquiriesAdminRoutes } from "./features/inquiries/inquiries.admin.route
 import { mediaRouter } from "./features/media/media.route";
 import aiRoutes from "./features/ai/ai.route";
 import { kolAdminRouter } from "./features/kol/kol.admin.route";
+import dashboardAdminRouter from "./features/dashboard/dashboard.route";
 import { kolPublicRouter } from "./features/kol/kol.public.route";
 import { recruitmentPublicRoutes } from "./features/recruitment/recruitment.public.route";
 import { recruitmentAdminRoutes } from "./features/recruitment/recruitment.admin.route";
@@ -51,12 +53,16 @@ export function createApp() {
   app.use("/api/v1/kol", kolPublicRouter);
   app.use("/api/v1/inquiries", inquiriesPublicRoutes);
   app.use("/api/v1/recruitment", recruitmentPublicRoutes);
+  
+  // Settings (Handles both public /settings and admin /admin/settings)
+  app.use("/api/v1", settingsRoutes);
 
   // // admin
   app.use("/api/v1/admin/services", servicesAdminRouter);
   app.use("/api/v1/admin/articles", articlesAdminRouter);
   app.use("/api/v1/admin/kol", kolAdminRouter);
   app.use("/api/v1/admin/inquiries", inquiriesAdminRoutes);
+  app.use("/api/v1/admin/dashboard", dashboardAdminRouter);
   app.use("/api/v1/admin/recruitment", recruitmentAdminRoutes);
 
   // // tools

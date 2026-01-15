@@ -9,6 +9,9 @@ const RecruitmentSchema = new Schema(
     description: { type: String, required: true },
     requirements: { type: [String], default: [] },
     benefits: { type: [String], default: [] },
+    department: { type: String, required: false }, // Optional
+    deadline: { type: Date, required: false },     // Optional
+    isActive: { type: Boolean, default: true },
     createdAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
